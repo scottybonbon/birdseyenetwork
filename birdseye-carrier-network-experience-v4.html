@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Birdseye Network · Concept &amp; Experience · v4.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700;9..40,800&family=Spline+Sans+Mono:wght@400;500&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000; --ink:#212121; --white:#fff; --offwhite:#EEEAE3;
+  --g100:#EEEEEE; --g300:#D9D9D9; --g500:#9E9E9E; --g700:#595959;
+  --blue:#1565FF; --blue-press:#0F55E0;
+  --hair-l:#E4E1DA; --hair-d:#2A2A2A;
+  --ok:#3E8E5A; --flag:#A97F2E; --live:#C0483A;
+  --mono:'Spline Sans Mono',monospace; --sans:'DM Sans',sans-serif;
+  --ease:cubic-bezier(0.32,0.72,0,1);
+  --shadow-card:0 1px 2px rgba(0,0,0,.05);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--white);color:var(--black);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+::selection{background:var(--blue);color:#fff}
+
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+@media(max-width:700px){.wrap{padding:0 22px}}
+section{padding:112px 0}
+@media(max-width:700px){section{padding:80px 0}}
+
+.on-black{background:var(--black);color:var(--white)}
+.on-off{background:var(--offwhite)}
+
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--g700);margin-bottom:24px}
+.on-black .kicker{color:var(--g500)}
+
+h1,h2{font-weight:800;text-transform:uppercase;line-height:.96;letter-spacing:-.02em}
+h2{font-size:clamp(34px,4.8vw,58px);margin-bottom:22px;max-width:960px}
+h1 .em,h2 .em,.close-h .em{font-weight:800}
+.on-black h1 .em,.on-black h2 .em{color:var(--blue)}
+h2 .em{color:var(--blue)}
+.lede{color:var(--g700);font-size:21px;line-height:1.5;max-width:660px;font-weight:400}
+.on-black .lede{color:var(--g500)}
+.mono{font-family:var(--mono)}
+
+/* ---------- HERO ---------- */
+.hero{padding:120px 0 0;background:var(--black);color:var(--white)}
+.hero .tag{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--g500);border:1px solid var(--hair-d);padding:8px 16px;border-radius:999px;display:inline-block;margin-bottom:44px}
+.hero h1{font-size:clamp(44px,7vw,86px);max-width:1080px}
+.hero p{margin-top:30px;font-size:21px;color:var(--g500);max-width:680px;line-height:1.5}
+.hero p b{color:var(--white);font-weight:500}
+.brandline{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--g700);margin-top:52px;text-transform:uppercase}
+.brandline span{color:var(--white)}
+
+/* ticker */
+.ticker-shell{margin-top:72px;border-top:1px solid var(--hair-d);overflow:hidden;background:var(--black)}
+.ticker{display:flex;width:max-content;animation:tick 58s linear infinite}
+@media (prefers-reduced-motion: reduce){.ticker{animation:none}}
+.tk{font-family:var(--mono);font-size:12px;letter-spacing:.04em;padding:16px 30px;border-right:1px solid var(--hair-d);white-space:nowrap;color:var(--g500);text-transform:uppercase}
+.tk b{color:var(--white);font-weight:500}
+.tk .c{color:var(--blue)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- FUNNEL ---------- */
+.funnel{margin-top:56px;border:1px solid var(--hair-l);border-top:3px solid var(--black)}
+.frow{display:grid;grid-template-columns:200px 1fr;gap:0;border-bottom:1px solid var(--hair-l);align-items:center}
+.frow:last-child{border-bottom:0}
+.frow .fmeta{padding:24px 26px;border-right:1px solid var(--hair-l)}
+.frow .fnum{font-family:var(--mono);font-size:clamp(26px,3vw,38px);font-weight:500;line-height:1;letter-spacing:-.01em}
+.frow.hl .fnum{color:var(--blue)}
+.frow .flabel{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--g700);margin-top:10px;line-height:1.6}
+.frow .fbar-cell{padding:24px 26px}
+.fbar{height:20px;background:var(--black);border-radius:2px}
+.frow.hl .fbar{background:var(--blue)}
+.frow .fbar.b1{width:6%}
+.frow .fbar.b2{width:20%}
+.frow .fbar.b3{width:52%}
+.frow .fbar.b4{width:100%;background:var(--g300)}
+.frow .fnote{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--g500);margin-top:10px}
+@media(max-width:700px){.frow{grid-template-columns:1fr}.frow .fmeta{border-right:0;border-bottom:1px solid var(--hair-l);padding-bottom:16px}.frow .fbar-cell{padding-top:16px}}
+.math-note{margin-top:32px;color:var(--g700);max-width:780px;font-size:17px}
+.math-note b{color:var(--black);font-weight:700}
+.scalebar{margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--g500)}
+
+/* ---------- QUOTE / HUMAN TRUTH ---------- */
+.truth{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:56px;align-items:start}
+@media(max-width:900px){.truth{grid-template-columns:1fr;gap:36px}}
+.truth p{color:var(--g700);font-size:17px;margin-bottom:18px}
+.truth p b{color:var(--black);font-weight:700}
+.pullquote{border-left:3px solid var(--blue);padding:6px 0 6px 26px}
+.pullquote .q{font-size:26px;line-height:1.25;font-weight:500;letter-spacing:-.01em}
+.pullquote .a{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g500);margin-top:18px}
+.stepline{margin-top:26px;border-top:1px solid var(--hair-l)}
+.stepline .sl{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid var(--hair-l);font-size:15.5px;color:var(--g700)}
+.stepline .sl b{color:var(--black)}
+.stepline .sn{font-family:var(--mono);color:var(--blue);font-size:13px;flex-shrink:0;padding-top:2px}
+
+/* ---------- OBSERVATION GRID ---------- */
+.obs{display:flex;flex-wrap:wrap;gap:10px;margin-top:48px;max-width:940px}
+.chip-obs{font-family:var(--mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase;padding:11px 16px;border:1px solid var(--hair-l);border-radius:999px;color:var(--g700);background:var(--white)}
+.chip-obs.flag{border-color:var(--flag);color:var(--flag)}
+.obs-note{margin-top:34px;color:var(--g700);max-width:760px;font-size:16px}
+.obs-note b{color:var(--black);font-weight:700}
+.obs-flow{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:30px;font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--g700)}
+.obs-flow .node{border:1px solid var(--hair-l);padding:12px 18px;background:var(--white)}
+.obs-flow .node b{color:var(--black)}
+.obs-flow .arw{color:var(--blue)}
+
+/* ---------- EMAIL / GMAIL SIM ---------- */
+.stage{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;margin-top:56px;align-items:start}
+@media(max-width:980px){.stage{grid-template-columns:1fr}}
+.gmail{background:#fff;color:#1f1f1f;border-radius:16px;overflow:hidden;border:1px solid var(--hair-l);box-shadow:0 1px 3px rgba(0,0,0,.08);font-family:'Roboto',arial,sans-serif}
+.gm-toolbar{display:flex;align-items:center;gap:4px;padding:8px 12px;border-bottom:1px solid #e8eaed}
+.gm-ic{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#444746;flex-shrink:0;transition:background 140ms var(--ease)}
+.gm-ic:hover{background:#f1f3f4}
+.gm-ic svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.gm-sep{width:1px;height:20px;background:#e8eaed;margin:0 6px}
+.gm-toolbar .sp{flex:1}
+.gm-pager{font-size:12px;color:#5e5e5e;margin-right:4px;white-space:nowrap}
+.gm-subjectrow{display:flex;align-items:center;gap:10px;padding:18px 24px 6px 24px;flex-wrap:wrap}
+.gm-subject{font-size:21px;font-weight:400;color:#1f1f1f;line-height:1.3}
+.gm-label{font-size:11px;color:#5e5e5e;background:#eceff1;border-radius:4px;padding:3px 6px 3px 8px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.gm-senderrow{display:flex;align-items:flex-start;gap:14px;padding:12px 24px 4px 16px}
+.gm-avatar{width:40px;height:40px;border-radius:50%;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--sans);font-weight:800;font-size:16px;flex-shrink:0}
+.gm-from{flex:1;min-width:0}
+.gm-from .nm{font-size:14px;font-weight:700;color:#1f1f1f}
+.gm-from .nm span{font-weight:400;color:#5e5e5e;font-size:12px;margin-left:6px}
+.gm-from .tome{font-size:12px;color:#5e5e5e;margin-top:1px}
+.gm-meta{color:#5e5e5e;font-size:12px;white-space:nowrap;padding-top:6px}
+.gm-bodypane{padding:20px 24px 8px 70px}
+@media(max-width:700px){.gm-bodypane{padding:20px 16px 8px 16px}.gm-senderrow{padding-left:16px}}
+.gm-email{max-width:600px}
+.mail-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;font-family:var(--sans)}
+.mail-logo{font-weight:800;font-size:15px;letter-spacing:.02em;text-transform:uppercase}
+.mail-logo small{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--g500);font-weight:400;margin-top:3px}
+.pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:999px;border:1px solid var(--hair-l);color:var(--flag)}
+.mail-status{font-family:var(--sans);font-size:18px;font-weight:500;line-height:1.45;margin-bottom:20px}
+.mail-status b{font-weight:700}
+
+.vision{position:relative;background:linear-gradient(160deg,#1b1b1b,#2a2a2a 60%,#1e1e1e);overflow:hidden;aspect-ratio:16/8.6;margin-bottom:8px}
+.vision svg{position:absolute;inset:0;width:100%;height:100%}
+.osd{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.85);text-transform:uppercase}
+.osd.tl{top:11px;left:13px}.osd.tr{top:11px;right:13px}
+.osd.bl{bottom:11px;left:13px;color:rgba(255,255,255,.55)}.osd.br{bottom:11px;right:13px}
+.osd .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--live);margin-right:6px;animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+@media (prefers-reduced-motion: reduce){.osd .dot{animation:none}}
+.corner{position:absolute;width:14px;height:14px;border:1.5px solid rgba(255,255,255,.5)}
+.corner.a{top:8px;left:8px;border-right:0;border-bottom:0}
+.corner.b{top:8px;right:8px;border-left:0;border-bottom:0}
+.corner.c{bottom:8px;left:8px;border-right:0;border-top:0}
+.corner.d{bottom:8px;right:8px;border-left:0;border-top:0}
+.bbox{position:absolute;border:1.5px solid var(--blue);font-family:var(--mono);font-size:9px}
+.bbox label{position:absolute;top:-19px;left:-1.5px;background:var(--blue);color:#fff;padding:2px 7px;letter-spacing:.1em;white-space:nowrap;text-transform:uppercase}
+.bbox.flagged{border-color:var(--flag)}
+.bbox.flagged label{background:var(--flag);color:#fff}
+.bbox.rl label{left:auto;right:-1.5px}
+.vision-cap{font-family:var(--mono);font-size:10.5px;color:var(--g500);letter-spacing:.12em;margin-bottom:22px;text-transform:uppercase}
+
+.mail-data{border:1px solid var(--hair-l);border-radius:8px;overflow:hidden;margin-bottom:20px}
+.mail-data .dr{display:flex;justify-content:space-between;gap:14px;padding:12px 18px;font-size:13.5px;border-bottom:1px solid var(--hair-l)}
+.mail-data .dr:last-child{border-bottom:0}
+.mail-data .dk{color:var(--g700);font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.13em;padding-top:2px}
+.mail-data .dv{font-weight:500;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;letter-spacing:.02em;text-align:right}
+.mail-data .dv.flagged{color:var(--flag)}
+.mail-data .dv.clear{color:var(--ok)}
+.facts{background:var(--offwhite);border-radius:8px;padding:18px 20px;margin-bottom:20px}
+.facts .ft{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--g700);margin-bottom:12px}
+.facts li{list-style:none;font-size:13.5px;color:var(--ink);padding:7px 0;border-top:1px solid var(--hair-l);display:flex;gap:10px}
+.facts li:first-of-type{border-top:0}
+.facts li b{color:var(--black);font-weight:700}
+.facts .fx{color:var(--blue);font-family:var(--mono);flex-shrink:0}
+.articles{margin-bottom:18px}
+.articles .at{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--g700);margin-bottom:10px}
+.articles a{display:block;font-size:13.5px;color:var(--ink);text-decoration:none;padding:9px 0;border-top:1px solid var(--hair-l)}
+.articles a:hover{color:var(--blue)}
+.articles a span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--g500);text-transform:uppercase;margin-top:3px}
+.noask{font-family:var(--sans);font-size:12.5px;color:var(--g700);line-height:1.6;border-top:1px solid var(--hair-l);padding-top:16px;margin-bottom:8px}
+.noask b{color:var(--black);font-weight:700}
+.mail-foot{font-family:var(--sans);font-size:11px;color:var(--g500);line-height:1.6;border-top:1px solid var(--hair-l);padding-top:14px;margin-top:14px}
+.mail-foot a{color:var(--g700)}
+
+/* callouts */
+.notes{position:sticky;top:40px}
+.note{padding:24px 0;border-bottom:1px solid var(--hair-l)}
+.note:first-child{padding-top:0}
+.note .nk{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g700);margin-bottom:8px}
+.note p{color:var(--g700);font-size:15.5px}
+.note p b{color:var(--black);font-weight:700}
+
+/* ---------- DIGEST ---------- */
+.digest-lead{max-width:680px;margin-top:8px}
+.digest{background:var(--white);border:1px solid var(--hair-l);border-radius:12px;overflow:hidden;margin-top:52px;box-shadow:var(--shadow-card)}
+.dg-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;padding:26px 30px;border-bottom:1px solid var(--hair-l);background:var(--black);color:#fff}
+.dg-top .dg-brand{font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.02em}
+.dg-top .dg-brand small{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--g500);font-weight:400;margin-top:4px}
+.dg-top .dg-for{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--g500);text-align:right;line-height:1.7}
+.dg-top .dg-for b{color:#fff;font-weight:500}
+.dg-kpi{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--hair-l)}
+@media(max-width:760px){.dg-kpi{grid-template-columns:repeat(2,1fr)}}
+.dg-k{padding:24px 26px;border-right:1px solid var(--hair-l)}
+.dg-k:last-child{border-right:0}
+.dg-k .kv{font-family:var(--mono);font-size:30px;font-weight:500;line-height:1}
+.dg-k .kv.b{color:var(--blue)}
+.dg-k .kv.w{color:var(--flag)}
+.dg-k .kl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--g700);margin-top:10px;line-height:1.6}
+.dg-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:760px){.dg-body{grid-template-columns:1fr}}
+.dg-col{padding:26px 30px}
+.dg-col:first-child{border-right:1px solid var(--hair-l)}
+@media(max-width:760px){.dg-col:first-child{border-right:0;border-bottom:1px solid var(--hair-l)}}
+.dg-h{font-family:var(--mono);font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--g700);margin-bottom:16px}
+.dg-issue{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--hair-l);font-size:14px;color:var(--g700);line-height:1.45}
+.dg-issue:first-of-type{border-top:0}
+.dg-issue b{color:var(--black);font-weight:700}
+.dg-issue .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:3px;flex-shrink:0;height:fit-content;margin-top:2px}
+.dg-issue .tag.f{background:#f6efe0;color:var(--flag)}
+.dg-issue .tag.o{background:#e9eef0;color:var(--g700)}
+.dg-rec{padding:11px 0;border-top:1px solid var(--hair-l);font-size:14px;color:var(--g700);line-height:1.45;display:flex;gap:10px}
+.dg-rec:first-of-type{border-top:0}
+.dg-rec .rn{color:var(--blue);font-family:var(--mono);font-size:13px;flex-shrink:0}
+.dg-rec b{color:var(--black);font-weight:700}
+.dg-foot{padding:18px 30px;border-top:1px solid var(--hair-l);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--g500);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.reposition{margin-top:34px;max-width:760px;color:var(--g700);font-size:16px}
+.reposition b{color:var(--black);font-weight:700}
+
+/* ---------- LOOP ---------- */
+.loop{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--hair-l);border:1px solid var(--hair-l);margin-top:56px}
+@media(max-width:860px){.loop{grid-template-columns:1fr}}
+.lstep{background:var(--white);padding:28px 26px}
+.lstep .ln{font-family:var(--mono);font-size:12px;color:var(--blue);letter-spacing:.06em;margin-bottom:14px}
+.lstep h4{font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:6px}
+.lstep p{font-size:14px;color:var(--g700);line-height:1.5}
+.lstep .who{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--g500);margin-top:14px;padding-top:12px;border-top:1px solid var(--hair-l)}
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:44px;align-items:center}
+@media(max-width:860px){.contrast{grid-template-columns:1fr;gap:26px}}
+.contrast .q{font-size:23px;line-height:1.3;font-weight:500;letter-spacing:-.01em}
+.contrast .q .em{color:var(--blue);font-weight:inherit}
+.contrast p{color:var(--g700);font-size:16px}
+.contrast p b{color:var(--black);font-weight:700}
+
+/* ---------- WIN CARDS ---------- */
+.wiift{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px}
+@media(max-width:980px){.wiift{grid-template-columns:1fr}}
+.wcard{background:var(--white);border:1px solid var(--hair-l);border-radius:8px;padding:32px 30px;display:flex;flex-direction:column;box-shadow:var(--shadow-card);transition:border-color 180ms var(--ease)}
+.wcard:hover{border-color:var(--black)}
+.wcard .who{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g700);margin-bottom:10px}
+.wcard h3{font-size:21px;font-weight:800;text-transform:uppercase;line-height:1.04;letter-spacing:-.02em;margin-bottom:20px}
+.wcard ul{list-style:none;display:flex;flex-direction:column;flex:1}
+.wcard li{padding:14px 0;border-top:1px solid var(--hair-l);font-size:14.5px;color:var(--g700);line-height:1.5}
+.wcard li:first-child{border-top:0}
+.wcard li b{color:var(--black);font-weight:700}
+
+/* ---------- CONSTRAINT ---------- */
+.constraint{display:grid;grid-template-columns:1fr 1fr;gap:64px;margin-top:52px;align-items:start}
+@media(max-width:900px){.constraint{grid-template-columns:1fr;gap:34px}}
+.constraint .lead p{color:var(--g500);font-size:17px;margin-bottom:18px}
+.constraint .lead p b{color:var(--white);font-weight:700}
+.on-black .steps{border-top:1px solid var(--hair-d)}
+.on-black .steps .st{display:flex;gap:16px;padding:15px 0;border-bottom:1px solid var(--hair-d);font-size:15px;color:var(--g300)}
+.on-black .steps .st b{color:#fff}
+.on-black .steps .sn{font-family:var(--mono);color:var(--blue);font-size:13px;flex-shrink:0;padding-top:2px}
+.small-lead{font-family:var(--mono);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--white);margin-top:26px}
+
+/* ---------- ROADMAP ---------- */
+.phase{display:grid;grid-template-columns:230px 1fr;gap:40px;padding:38px 0;border-top:1px solid var(--hair-l)}
+@media(max-width:760px){.phase{grid-template-columns:1fr;gap:14px}}
+.phase .pdate{font-family:var(--mono);font-size:13px;color:var(--black);letter-spacing:.02em;line-height:1.8}
+.phase .pdate b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g500);margin-bottom:8px;font-weight:500}
+.phase .pdate .dt{color:var(--blue)}
+.phase h3{font-size:23px;font-weight:800;text-transform:uppercase;letter-spacing:-.02em;line-height:1;margin-bottom:12px}
+.phase p{color:var(--g700);font-size:15.5px;max-width:680px;margin-bottom:16px}
+.phase p b{color:var(--black)}
+.pmeta{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:7px 13px;border-radius:999px;border:1px solid var(--hair-l);color:var(--g700);background:var(--white)}
+.chip.owner{border-color:var(--black);color:var(--black)}
+.chip.exit{background:var(--black);border-color:var(--black);color:var(--white)}
+.mile{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair-l);border:1px solid var(--hair-l);margin-top:52px}
+@media(max-width:860px){.mile{grid-template-columns:repeat(2,1fr)}}
+.mi{background:var(--white);padding:26px 22px}
+.mi .md{font-family:var(--mono);font-size:11.5px;color:var(--g500);letter-spacing:.14em;margin-bottom:10px;text-transform:uppercase}
+.mi .mt{font-size:14.5px;font-weight:700;line-height:1.35}
+
+/* ---------- METRICS ---------- */
+.northstar{border:1px solid var(--hair-d);border-radius:8px;padding:34px 32px;margin-top:52px;display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.northstar .nsv{font-family:var(--mono);font-size:clamp(30px,4vw,46px);font-weight:500;color:var(--blue);line-height:1}
+.northstar .nsl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g500);margin-top:12px}
+.northstar .nsr{max-width:420px;color:var(--g300);font-size:15.5px}
+.northstar .nsr b{color:#fff;font-weight:700}
+.metric-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--hair-d);border:1px solid var(--hair-d);margin-top:28px}
+@media(max-width:960px){.metric-strip{grid-template-columns:repeat(2,1fr)}}
+.mx{background:var(--black);padding:28px 22px}
+.mx .v{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--white);line-height:1.3}
+.mx .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--g500);margin-top:12px;line-height:1.7}
+
+/* ---------- CONSENT ---------- */
+.gate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+@media(max-width:900px){.gate-grid{grid-template-columns:1fr}}
+.gate{border:1px solid var(--hair-l);border-radius:8px;padding:26px 24px}
+.gate .gh{font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;margin-bottom:10px}
+.gate p{font-size:14px;color:var(--g700);line-height:1.5}
+.gate .gn{font-family:var(--mono);font-size:11px;color:var(--blue);letter-spacing:.1em;margin-bottom:14px}
+.trust-note{margin-top:34px;max-width:780px;color:var(--g700);font-size:16px}
+.trust-note b{color:var(--black);font-weight:700}
+
+/* ---------- CLOSE ---------- */
+.close{padding:130px 0 110px;background:var(--black);color:var(--white)}
+.close-h{font-weight:800;text-transform:uppercase;line-height:.98;letter-spacing:-.02em;font-size:clamp(36px,5.6vw,72px);max-width:1040px}
+.close-h .em{color:var(--blue);font-weight:800}
+.close p{margin-top:28px;color:var(--g500);max-width:660px;font-size:17px}
+.close p b{color:var(--white);font-weight:700}
+footer{background:var(--black);border-top:1px solid var(--hair-d);padding:28px 0}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--g500);text-transform:uppercase}
+
+/* motion */
+.reveal{opacity:0;transform:translateY(10px);transition:opacity 220ms var(--ease),transform 220ms var(--ease)}
+.reveal.on{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <div class="tag">Internal concept · The Birdseye Network · v4.0 · July 2026</div>
+    <h1>The market we're chasing is already <span class="em">driving through our gates.</span></h1>
+    <p>Birdseye runs about <b>a million gate transactions a month</b>. Hundreds of thousands of carriers and companies use the product first-hand. We spend our energy explaining Birdseye to strangers, while the whole market drives through our gates. This plan turns a courtesy our guards already extend into our biggest growth engine.</p>
+    <div class="brandline">Birdseye<span> · GateCore · SafeCore · YardCore · YARD OS · The Portal</span>, and the network already inside them</div>
+  </div>
+  <div class="ticker-shell" aria-hidden="true">
+    <div class="ticker" id="ticker"></div>
+  </div>
+</div>
+
+<!-- ============ 01 · THE MATH ============ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">01 · The math</div>
+    <h2>We don't have 170 customers.<br>We have contact with <span class="em">the whole market.</span></h2>
+    <p class="lede">Every site we run is visited daily by companies that aren't our customers yet. So our real footprint isn't 170 sites. It's a funnel that reaches the whole North American market.</p>
+
+    <div class="funnel reveal">
+      <div class="frow hl">
+        <div class="fmeta"><div class="fnum">170</div><div class="flabel">Sites we run today</div></div>
+        <div class="fbar-cell"><div class="fbar b1"></div><div class="fnote">Signing in half-dozens, 10 at a time now</div></div>
+      </div>
+      <div class="frow">
+        <div class="fmeta"><div class="fnum">2,500</div><div class="flabel">Sites inside customers we already serve</div></div>
+        <div class="fbar-cell"><div class="fbar b2"></div><div class="fnote">The white space, access we already have</div></div>
+      </div>
+      <div class="frow">
+        <div class="fmeta"><div class="fnum">40,000</div><div class="flabel">Bullseye-fit sites</div></div>
+        <div class="fbar-cell"><div class="fbar b3"></div><div class="fnote">High-volume, multi-gate, real complexity</div></div>
+      </div>
+      <div class="frow">
+        <div class="fmeta"><div class="fnum">200,000</div><div class="flabel">Total addressable sites · North America</div></div>
+        <div class="fbar-cell"><div class="fbar b4"></div><div class="fnote">We're barely playing the game</div></div>
+      </div>
+    </div>
+    <div class="scalebar reveal">Bar lengths are illustrative. The point is the order of magnitude between where we are and what we touch.</div>
+
+    <p class="math-note reveal">To <b>double the company</b>, we need <b>170 more sites</b>. Going to 1,000 is a <b>5–6× business</b>, and that fills only <b>half</b> the white space inside customers we already serve. It doesn't even touch the 40,000 bullseye yards or the 200,000-site market. All of that pipeline already drives through our gates.</p>
+  </div>
+</section>
+
+<!-- ============ 02 · THE HUMAN TRUTH ============ -->
+<section class="on-off">
+  <div class="wrap">
+    <div class="kicker">02 · Why this isn't new</div>
+    <h2>We've got eyes.<br>We've got <span class="em">your back.</span></h2>
+    <div class="truth">
+      <div class="reveal">
+        <p>Picture the guard in the booth. A truck rolls in with a cracked windshield or a flat tire. What does he do? <b>He calls the carrier and tells them.</b> It's nowhere in the service agreement. It's just what you do when you're keeping an eye out.</p>
+        <p>Birdseye is an <b>extension of our customer's team.</b> We already have thousands of these conversations a day, keeping people up to speed on what we see. The Network doesn't invent a new behavior. <b>It takes the one that already works and scales it.</b></p>
+        <p>A guard remembers the company he helped, and it pays off years later. We can do that a hundred thousand times a month, on purpose.</p>
+      </div>
+      <div class="reveal">
+        <div class="pullquote">
+          <div class="q">"It's like seeing someone on the road with a broken headlight and flashing your lights. You're just keeping an eye out."</div>
+          <div class="a">From the working session · the origin of the idea</div>
+        </div>
+        <div class="stepline">
+          <div class="sl"><span class="sn">→</span><span>We already sit at the exact moment a company would <b>want</b> to be told something.</span></div>
+          <div class="sl"><span class="sn">→</span><span>Help arrives with <b>no ask attached.</b> That's what makes it trusted, not resented.</span></div>
+          <div class="sl"><span class="sn">→</span><span>Every helpful touch is a <b>brand impression</b> in a market that runs on word of mouth.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · RAW MATERIAL ============ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">03 · The raw material</div>
+    <h2>We already look for <span class="em">twenty things.</span><br>Now they send themselves.</h2>
+    <p class="lede">Our agents already check every vehicle against a standing list, today by hand. The tech team is automating it: the truck pulls up, the system sees it, the message writes itself.</p>
+    <div class="obs reveal">
+      <span class="chip-obs">Cracked windshield</span>
+      <span class="chip-obs">Headlights out</span>
+      <span class="chip-obs">Taillights out</span>
+      <span class="chip-obs flag">Low / flat tire</span>
+      <span class="chip-obs">Trailer gashes</span>
+      <span class="chip-obs">Body damage</span>
+      <span class="chip-obs flag">Broken / missing seal</span>
+      <span class="chip-obs">Peeling decal</span>
+      <span class="chip-obs">Faded DOT markings</span>
+      <span class="chip-obs">Load / tarp issues</span>
+      <span class="chip-obs">Plate legibility</span>
+      <span class="chip-obs">Mud-flap / guard damage</span>
+      <span class="chip-obs">Lights / reflectors</span>
+      <span class="chip-obs">Door / latch condition</span>
+      <span class="chip-obs">Leaks</span>
+      <span class="chip-obs">…and more</span>
+    </div>
+    <div class="obs-flow reveal">
+      <span class="node"><b>Truck arrives</b></span>
+      <span class="arw">→</span>
+      <span class="node">System detects</span>
+      <span class="arw">→</span>
+      <span class="node">Message drafts</span>
+      <span class="arw">→</span>
+      <span class="node">Relevant articles attach</span>
+      <span class="arw">→</span>
+      <span class="node"><b>Carrier gets it</b></span>
+    </div>
+    <p class="obs-note reveal">We've been treating this as a chore. It's actually the <b>raw material for the warmest outreach in logistics</b>, and it's already in our hands.</p>
+  </div>
+</section>
+
+<!-- ============ 04 · TWO SURFACES ============ -->
+<section class="on-off">
+  <div class="wrap">
+    <div class="kicker">04 · The experience: one observation, two audiences</div>
+    <h2>Help the carrier.<br>Make the customer <span class="em">look like a rockstar.</span></h2>
+    <p class="lede">One gate event produces two things: a useful heads-up for the visiting carrier, and a monthly digest that makes our customer look like the best-run yard in their market.</p>
+
+    <!-- 4A — CARRIER ALERT -->
+    <div class="stage">
+      <div class="reveal">
+      <div class="gmail">
+        <div class="gm-toolbar">
+          <span class="gm-ic" title="Back"><svg viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg></span>
+          <span class="gm-sep"></span>
+          <span class="gm-ic" title="Archive"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M5 8v11a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8"/><path d="M10 12h4"/></svg></span>
+          <span class="gm-ic" title="Delete"><svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"/><path d="M6 6v14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V6"/></svg></span>
+          <span class="gm-sep"></span>
+          <span class="gm-ic" title="Mark unread"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="sp"></span>
+          <span class="gm-pager">3 of 2,140</span>
+          <span class="gm-ic" title="Newer"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></span>
+          <span class="gm-ic" title="Older"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></span>
+        </div>
+        <div class="gm-subjectrow">
+          <span class="gm-subject">A heads-up on Unit 4512 from the gate at Brimich Logistics</span>
+          <span class="gm-label">Inbox</span>
+        </div>
+        <div class="gm-senderrow">
+          <div class="gm-avatar">B</div>
+          <div class="gm-from">
+            <div class="nm">Birdseye <span>&lt;gate@birdseye.ca&gt;</span></div>
+            <div class="tome">to dispatch@rejextransport.com</div>
+          </div>
+          <div class="gm-meta">2:16 PM</div>
+        </div>
+        <div class="gm-bodypane">
+        <div class="gm-email">
+          <div class="mail-head">
+            <div class="mail-logo">Birdseye<small>A note from the gate</small></div>
+            <span class="pill">1 thing to flag</span>
+          </div>
+          <div class="mail-status">Your driver came through <b>Brimich Logistics, Brantford, ON</b> at 2:14 PM. Everything checked out at the gate, with one thing worth a look.</div>
+
+          <div class="vision">
+            <svg viewBox="0 0 640 344" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Gate camera capture of a truck with a flagged tire">
+              <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#242424"/><stop offset="1" stop-color="#181818"/></linearGradient></defs>
+              <rect width="640" height="344" fill="url(#sky)"/>
+              <rect y="268" width="640" height="76" fill="#121212"/>
+              <line x1="0" y1="268" x2="640" y2="268" stroke="#333" stroke-width="1.5"/>
+              <g>
+                <rect x="150" y="86" width="330" height="140" fill="#2d2d2d" stroke="#404040" stroke-width="1.5"/>
+                <line x1="190" y1="86" x2="190" y2="226" stroke="#383838"/>
+                <text x="315" y="165" fill="#565656" font-family="'Spline Sans Mono',monospace" font-size="20" text-anchor="middle" letter-spacing="4">TRLR 53-8841</text>
+                <path d="M480 226 v-96 h52 l40 44 h30 v52 z" fill="#333" stroke="#474747" stroke-width="1.5"/>
+                <rect x="537" y="140" width="30" height="30" fill="#181818" stroke="#474747"/>
+                <circle cx="205" cy="238" r="22" fill="#181818" stroke="#404040" stroke-width="3"/>
+                <circle cx="255" cy="238" r="22" fill="#181818" stroke="#404040" stroke-width="3"/>
+                <circle cx="505" cy="238" r="22" fill="#181818" stroke="#404040" stroke-width="3"/>
+                <circle cx="561" cy="238" r="22" fill="#181818" stroke="#A97F2E" stroke-width="3"/>
+              </g>
+            </svg>
+            <span class="corner a"></span><span class="corner b"></span><span class="corner c"></span><span class="corner d"></span>
+            <span class="osd tl"><span class="dot"></span>Cam 02 · Gate A · In</span>
+            <span class="osd bl">2026-07-20 · 14:14 ET</span>
+            <span class="osd br">Birdseye</span>
+            <div class="bbox flagged rl" style="left:79%;top:60%;width:11%;height:18%"><label>Low · R/F tire</label></div>
+          </div>
+          <div class="vision-cap">Entry capture · what was visible at the gate · not an inspection</div>
+
+          <div class="mail-data">
+            <div class="dr"><span class="dk">Unit / trailer</span><span class="dv">4512 · 53-8841</span></div>
+            <div class="dr"><span class="dk">Seal</span><span class="dv clear">Intact ✓</span></div>
+            <div class="dr"><span class="dk">Worth a look</span><span class="dv flagged">Right-front tire, running low</span></div>
+          </div>
+
+          <div class="facts">
+            <div class="ft">Why we're mentioning it</div>
+            <li><span class="fx">▹</span><span>Under-inflated tires are among the <b>most-cited items</b> in roadside DOT inspections.</span></li>
+            <li><span class="fx">▹</span><span>A single citation can pull a truck <b>out of service</b>, and dent your CSA score.</span></li>
+            <li><span class="fx">▹</span><span>Catching it in the yard is a <b>$40 fix, not a roadside one.</b></span></li>
+          </div>
+
+          <div class="articles">
+            <div class="at">A couple of things that might help</div>
+            <a href="#">Tire maintenance and the CSA Vehicle Maintenance BASIC<span>FMCSA · guidance</span></a>
+            <a href="#">What roadside inspectors flag most, and how to prep<span>Industry brief</span></a>
+          </div>
+
+          <div class="noask"><b>There's nothing to do here and no account to create.</b> We just saw it and figured you'd want to know. If a heads-up like this is useful, someone from our team may check in to ask whether you'd like them going forward.</div>
+          <div class="mail-foot">Sent because your vehicle entered a Birdseye-monitored facility, with the facility's permission. Notes describe what was visible at entry. They don't assign fault. <a href="#">Not useful? Tell us to stop.</a></div>
+        </div>
+        </div>
+      </div>
+      </div>
+
+      <div class="notes">
+        <div class="note reveal"><div class="nk">Help first, sell never (here)</div><p><b>The email asks for nothing.</b> No signup, no pitch. A person follows up by phone, not a funnel. That's what keeps it a courtesy, not spam.</p></div>
+        <div class="note reveal"><div class="nk">Hit it from all angles</div><p>An observation, then a few hard facts (pull-over risk, insurance, out-of-service exposure), then the articles. <b>It hands the carrier information they didn't have.</b></p></div>
+        <div class="note reveal"><div class="nk">The photo does the talking</div><p>"Your truck came through a week ago and this wasn't here." <b>No software company can fake being at the gate.</b></p></div>
+        <div class="note reveal"><div class="nk">Facts, never fault</div><p>Every note describes what was visible at entry. It never assigns blame. That's what lets both sides trust it.</p></div>
+      </div>
+    </div>
+
+    <!-- 4B — MONTHLY DIGEST -->
+    <div class="digest-lead reveal" style="margin-top:96px">
+      <div class="kicker" style="color:var(--g700)">And once a month, to our customer</div>
+      <h2 style="font-size:clamp(28px,3.6vw,42px)">The yard digest.</h2>
+      <p style="color:var(--g700);font-size:18px;max-width:640px">An email a facility manager actually wants to open. Here's your yard last month: the traffic, the patterns, and what to do about them.</p>
+    </div>
+
+    <div class="digest reveal">
+      <div class="dg-top">
+        <div class="dg-brand">Birdseye<small>Monthly Yard Digest</small></div>
+        <div class="dg-for">Prepared for<br><b>Remco · Mississauga DC</b><br>June 2026</div>
+      </div>
+      <div class="dg-kpi">
+        <div class="dg-k"><div class="kv">6,204</div><div class="kl">Gate transactions</div></div>
+        <div class="dg-k"><div class="kv b">318</div><div class="kl">Distinct carriers</div></div>
+        <div class="dg-k"><div class="kv">2h 38m</div><div class="kl">Avg dwell time</div></div>
+        <div class="dg-k"><div class="kv w">41</div><div class="kl">Conditions flagged &amp; shared</div></div>
+      </div>
+      <div class="dg-body">
+        <div class="dg-col">
+          <div class="dg-h">What we saw this month</div>
+          <div class="dg-issue"><span class="tag f">Recurring</span><span><b>Seal discrepancies up 22%</b> vs. May, concentrated on the north gate, overnight arrivals.</span></div>
+          <div class="dg-issue"><span class="tag f">Safety</span><span><b>Nine low-tire flags</b> across four carriers, all notified at the gate.</span></div>
+          <div class="dg-issue"><span class="tag o">Pattern</span><span><b>Thursday PM congestion</b>: dwell spikes to 4h+ between 2–5 PM.</span></div>
+          <div class="dg-issue"><span class="tag o">Traffic</span><span><b>Top 5 carriers = 44%</b> of your volume; 60 carriers visited only once.</span></div>
+        </div>
+        <div class="dg-col">
+          <div class="dg-h">Recommended action</div>
+          <div class="dg-rec"><span class="rn">01</span><span><b>Stage a second overnight seal check</b> at the north gate. The discrepancy pattern is fixable with one process tweak.</span></div>
+          <div class="dg-rec"><span class="rn">02</span><span><b>Add an appointment window</b> Thursday afternoons to break the 2–5 PM dwell spike.</span></div>
+          <div class="dg-rec"><span class="rn">03</span><span><b>Review your top-5 carrier SLAs</b>. A small group carries most of your throughput.</span></div>
+        </div>
+      </div>
+      <div class="dg-foot"><span>Birdseye · Operational intelligence for the yard</span><span>Full event log in your Facility Portal →</span></div>
+    </div>
+    <p class="reposition reveal">This is the quiet repositioning: Birdseye stops being <b>outsourced gate security</b> and becomes <b>the operating system for the yard</b>. And a customer who looks good to everyone passing through renews, expands, and refers.</p>
+  </div>
+</section>
+
+<!-- ============ 05 · THE LOOP ============ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">05 · How it compounds</div>
+    <h2>Gate courtesy in.<br><span class="em">Warm pipeline out.</span></h2>
+    <p class="lede">Every helpful interaction is the top of a funnel that runs inside our existing operations. A person only steps in once the relationship is warm.</p>
+    <div class="loop reveal">
+      <div class="lstep"><div class="ln">01</div><h4>Observe &amp; notify</h4><p>The system spots a condition at the gate and sends the useful, no-ask heads-up.</p><div class="who">Tech operators + automation</div></div>
+      <div class="lstep"><div class="ln">02</div><h4>Confirm it's useful</h4><p>A courtesy call: "We've sent you a couple of these. Are they helpful? Want them going forward?"</p><div class="who">Account coordinators</div></div>
+      <div class="lstep"><div class="ln">03</div><h4>Capture the contact</h4><p>With permission: the right names, roles and emails to keep the value flowing.</p><div class="who">Account coordinators</div></div>
+      <div class="lstep"><div class="ln">04</div><h4>Map the account</h4><p>Find the other players in that org, understand the footprint, build the relationship online.</p><div class="who">BDR team</div></div>
+      <div class="lstep"><div class="ln">05</div><h4>Warm conversation</h4><p>"I know you guys, I get your emails all the time." The cold call never had to happen.</p><div class="who">Sales</div></div>
+      <div class="lstep"><div class="ln">06</div><h4>New site / white space</h4><p>A new logo, or another yard inside a customer we already serve. The loop restarts, bigger.</p><div class="who">The flywheel</div></div>
+    </div>
+    <div class="contrast">
+      <div class="reveal"><div class="q">"Their drivers visit every kind of site. They come back and say <span class="em">wow.</span> It's a small world. Everyone's one or two degrees apart."</div></div>
+      <div class="reveal"><p>There's a second loop we don't even have to run. Drivers compare yards constantly. A Birdseye site that's <b>smooth and communicative</b> sells itself, especially next to the yard down the road with one dock and a jackknife entrance. <b>The best ad is a good experience the whole market drives through.</b></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · WIN-WIN-WIN ============ -->
+<section class="on-off">
+  <div class="wrap">
+    <div class="kicker">06 · What's in it for everyone</div>
+    <h2>It works because<br><span class="em">everyone wins.</span></h2>
+    <div class="wiift">
+      <div class="wcard reveal">
+        <div class="who">Our customer (the facility)</div>
+        <h3>Looks like the best-run yard in the market.</h3>
+        <ul>
+          <li><b>Seen as the safest, most communicative yard</b>. The reputation they're already fighting for.</li>
+          <li><b>Justifies their premium</b>, and strengthens the case for better insurance rates.</li>
+          <li><b>A monthly digest that makes them look good</b> to their bosses and customers.</li>
+          <li><b>Full control</b>: their facility, their permission, their name on the courtesy.</li>
+        </ul>
+      </div>
+      <div class="wcard reveal">
+        <div class="who">The visiting carrier</div>
+        <h3>Gets genuinely useful intelligence, free.</h3>
+        <ul>
+          <li><b>Knows about a problem before it becomes a citation</b>: windshield, tire, seal, damage.</li>
+          <li><b>More in control</b>, with information they didn't have before.</li>
+          <li><b>Photo proof from a neutral third party</b>. Settles "when did that happen?" in one image.</li>
+          <li><b>No ask, no strings</b>. Just a company that's looking out for them.</li>
+        </ul>
+      </div>
+      <div class="wcard reveal">
+        <div class="who">Birdseye</div>
+        <h3>Turns a daily chore into the warmest pipeline in logistics.</h3>
+        <ul>
+          <li><b>Soft-sell at scale</b>: hundreds of thousands of branded, welcome touches a month.</li>
+          <li><b>Top of mind at the moment of decision</b>. Showing up usefully, over and over.</li>
+          <li><b>Fills the white space</b> inside customers we already serve, the fastest path to 5–6×.</li>
+          <li><b>A relationship, then a customer for life</b>: value given before anything is asked.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 · THE REAL CONSTRAINT ============ -->
+<section class="on-black">
+  <div class="wrap">
+    <div class="kicker">07 · The real constraint</div>
+    <h2>The blocker isn't the tech.<br><span class="em">It's belief.</span></h2>
+    <div class="constraint">
+      <div class="lead reveal">
+        <p>The tech team is <b>already automating</b> the detection, the email, the article-pull. Engineering is not what stands between us and this.</p>
+        <p>The one real constraint is <b>internal buy-in</b>: the belief that this is worth doing on purpose. Leadership owns the vision and gives the mandate. Then someone great at execution runs it.</p>
+        <p>The reason it stalls is that it sounds <b>too grand, too big. Where do you even start?</b> So we make it small.</p>
+        <div class="small-lead">Start humble. Prove it. Then scale.</div>
+      </div>
+      <div class="reveal">
+        <div class="steps">
+          <div class="st"><span class="sn">01</span><span>Leadership explains the vision at a <b>town hall</b>: here's what this is, and why.</span></div>
+          <div class="st"><span class="sn">02</span><span>Define a <b>manageable pilot</b> and pick a few sites.</span></div>
+          <div class="st"><span class="sn">03</span><span>Establish the <b>communication and escalation process.</b></span></div>
+          <div class="st"><span class="sn">04</span><span>Account coordinators <b>confirm carriers find the alerts useful.</b></span></div>
+          <div class="st"><span class="sn">05</span><span><b>Collect the right contacts</b>, with permission.</span></div>
+          <div class="st"><span class="sn">06</span><span>Pass qualified accounts to the <b>BDR team to map.</b></span></div>
+          <div class="st"><span class="sn">07</span><span><b>Meet twice weekly</b> while it gets off the ground.</span></div>
+          <div class="st"><span class="sn">08</span><span><b>Measure the response before scaling.</b></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 · THE PLAN ============ -->
+<section class="on-off">
+  <div class="wrap">
+    <div class="kicker">08 · The plan</div>
+    <h2>Four phases.<br><span class="em">Starts humble. Ends big.</span></h2>
+    <p class="lede">Each phase earns the next. We start with the lowest-risk move and let proof, not ambition, unlock the scale.</p>
+
+    <div style="margin-top:52px">
+      <div class="phase reveal">
+        <div class="pdate"><b>Phase 0 · Align &amp; prove</b><span class="dt">Jul–Aug 2026</span><br>~5 weeks</div>
+        <div>
+          <h3>Win the room. Prove the raw material.</h3>
+          <p>Leadership delivers the vision at a town hall and names the mandate. In parallel: measure how well we already detect the checklist at 3–5 sites, and start the legal groundwork on what we can use and send. <b>No scaling until the team believes it and counsel clears the path.</b></p>
+          <div class="pmeta"><span class="chip owner">Owner: Leadership + Product</span><span class="chip">Legal: permission framework</span><span class="chip exit">Exit: team aligned · detection proven · counsel-approved</span></div>
+        </div>
+      </div>
+      <div class="phase reveal">
+        <div class="pdate"><b>Phase 1 · Concierge pilot</b><span class="dt">Sep–Oct 2026</span><br>~8 weeks · 2–3 sites</div>
+        <div>
+          <h3>Ship the digest. Send the first hundred alerts by hand.</h3>
+          <p>Lead with the <b>monthly yard digest</b>: first-party, lowest-risk, makes the customer look great. Then start opt-in carrier alerts at a couple of sites. Account coordinators call to confirm it's useful and capture the first contacts, with permission. <b>Deliberately small.</b></p>
+          <div class="pmeta"><span class="chip owner">Owner: Account coordinators</span><span class="chip">Ops: comms + escalation</span><span class="chip exit">Exit: "this is useful" × N · first mapped accounts</span></div>
+        </div>
+      </div>
+      <div class="phase reveal">
+        <div class="pdate"><b>Phase 2 · Operationalize the loop</b><span class="dt">Oct 2026–Feb 2027</span><br>25–50 sites</div>
+        <div>
+          <h3>Automate the machine. Turn contacts into pipeline.</h3>
+          <p>Detection → alert → digest runs automatically, with human review. BDR maps the permissioned contacts, starting with the <b>white space inside customers we already serve.</b> We measure conversion and start closing sites that came in warm.</p>
+          <div class="pmeta"><span class="chip owner">Owner: Engineering + BDR</span><span class="chip">Sales: warm-lead motion</span><span class="chip exit">Exit: first warm-sourced close · white-space expansion measurable</span></div>
+        </div>
+      </div>
+      <div class="phase reveal">
+        <div class="pdate"><b>Phase 3 · The growth engine</b><span class="dt">Mar–Jun 2027</span><br>Full footprint</div>
+        <div>
+          <h3>The big bang: the network as the business.</h3>
+          <p>The loop runs across the whole footprint as our main acquisition engine. On top of it: a carrier portal, paid intelligence tiers, a stolen-equipment watchlist wired into SafeCore, and Birdseye as <b>the yard's system of record.</b> We talk to the market as the network, not the photo vendor.</p>
+          <div class="pmeta"><span class="chip owner">Owner: Product + Revenue</span><span class="chip">GTM: network products</span><span class="chip exit">Exit: sites curve bends · first productized revenue</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mile reveal">
+      <div class="mi"><div class="md">Aug 2026</div><div class="mt">Town hall: the team is aligned and it's a go</div></div>
+      <div class="mi"><div class="md">Sep 2026</div><div class="mt">First digest sent + first alerts by hand</div></div>
+      <div class="mi"><div class="md">Q4 2026</div><div class="mt">First permissioned contacts mapped &amp; a warm close</div></div>
+      <div class="mi"><div class="md">2027</div><div class="mt">White-space expansion on the path to 1,000 sites</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 · METRICS ============ -->
+<section class="on-black">
+  <div class="wrap">
+    <div class="kicker">09 · How we'll know it's working</div>
+    <h2>One north star.<br><span class="em">The site count.</span></h2>
+    <p class="lede">Everything feeds one number: net new sites, new logos plus white space filled. That's the number that 5–6×'s the company.</p>
+    <div class="northstar reveal">
+      <div><div class="nsv">+ Sites</div><div class="nsl">Net new sites per quarter</div></div>
+      <div class="nsr">Warm-sourced sites are the proof the loop is closing. <b>170 more doubles us. 1,000 makes us a different company.</b></div>
+    </div>
+    <div class="metric-strip reveal">
+      <div class="mx"><div class="v">Detection accuracy</div><div class="l">How reliably we auto-catch the checklist, the raw-material dial</div></div>
+      <div class="mx"><div class="v">Alerts confirmed useful</div><div class="l">Carriers who say "yes, keep sending" on the courtesy call</div></div>
+      <div class="mx"><div class="v">Permissioned contacts</div><div class="l">Right names + roles captured per month, with consent</div></div>
+      <div class="mx"><div class="v">Accounts mapped</div><div class="l">Warm orgs handed from BDR into pipeline</div></div>
+      <div class="mx"><div class="v">Warm-sourced sites</div><div class="l">Closes that started as a gate courtesy, the loop closing</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · CONSENT ============ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">10 · The thing that gates it all</div>
+    <h2>Trust is the <span class="em">mechanism.</span></h2>
+    <p class="lede">The moment this feels sales-driven or surveillant, the trust we've built collapses. These are the questions we resolve before we scale, not after.</p>
+    <div class="gate-grid">
+      <div class="gate reveal"><div class="gn">01</div><div class="gh">Permission to use</div><p>Can we use the authorized-arrival lists our customers already give us, for outreach, not just operations? Get this in writing.</p></div>
+      <div class="gate reveal"><div class="gn">02</div><div class="gh">Ongoing consent</div><p>Have carriers agreed to keep hearing from us? Confirmed on the courtesy call, easy to stop anytime.</p></div>
+      <div class="gate reveal"><div class="gn">03</div><div class="gh">Our customer's control</div><p>Messages go out in their name and at their facility. They decide what's shared and can switch it off.</p></div>
+      <div class="gate reveal"><div class="gn">04</div><div class="gh">Facts, never fault</div><p>Observations describe what was visible at entry. Careful wording keeps us helpful and limits liability.</p></div>
+      <div class="gate reveal"><div class="gn">05</div><div class="gh">Human review</div><p>Where does an automated assessment need a person to sign off before it's sent? Draw that line clearly.</p></div>
+      <div class="gate reveal"><div class="gn">06</div><div class="gh">Service vs. marketing</div><p>A bright line between the courtesy and the sale. Cross it too early and the whole thing reads as a pitch.</p></div>
+    </div>
+    <p class="trust-note reveal">This is why we <b>lead with the digest</b>: it's first-party (our customer, their yard), so we prove value while counsel clears the carrier side. <b>The opportunity is real, but trust is what makes it work.</b></p>
+  </div>
+</section>
+
+<!-- ============ CLOSE ============ -->
+<div class="close">
+  <div class="wrap">
+    <div class="kicker">11 · The one-liner</div>
+    <div class="close-h">We don't need to cross the abyss. We just need to say <span class="em">"we've got your back"</span> a hundred thousand times a month, on purpose.</div>
+    <p>We already pay for the cameras, the agents, the million monthly interactions. This turns the daily courtesy into brand, relationships, and the warmest pipeline in logistics. And, in time, <b>the operating system for the yard.</b></p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Birdseye · Internal concept · Not for distribution</span>
+    <span>July 2026 · v4.0</span>
+  </div>
+</footer>
+
+<script>
+// live gate-event ticker, reframed around the courtesy
+const ev = [
+  ['IN','14:14','BRANTFORD ON','REJEX TRANSPORT','LOW R/F TIRE'],
+  ['OUT','14:11','LAREDO TX','C.R. ENGLAND','ALL CLEAR'],
+  ['IN','14:09','WINNIPEG MB','BISON TRANSPORT','ALL CLEAR'],
+  ['IN','14:07','MISSISSAUGA ON','REMCO','SEAL OK'],
+  ['OUT','14:05','COLUMBUS OH','JML FREIGHT','CRACKED WINDSHIELD'],
+  ['IN','14:02','BRAMPTON ON','NORTHSTAR','ALL CLEAR'],
+  ['IN','13:59','DALLAS TX','ARROW EXPEDITE','DECAL PEELING'],
+  ['OUT','13:57','BRANTFORD ON','KLINE TRUCKING','ALL CLEAR'],
+];
+const t = document.getElementById('ticker');
+let html = '';
+for (let r = 0; r < 2; r++) {
+  for (const [d, tm, loc, car, st] of ev) {
+    html += `<span class="tk">${d} ${tm} · ${loc} · <b>${car}</b> · ${st} · <span class="c">HEADS-UP SENT ✓</span></span>`;
+  }
+}
+t.innerHTML = html;
+
+// scroll reveal
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
